@@ -7,8 +7,10 @@ export default {
     title: `Slicks Slices`,
     siteUrl: 'https://gatsby.pizza',
     description: 'The best pizza place in NYC!',
+    twitter: '@slicks-slices',
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
       // this is the naame of the plugin you're adding

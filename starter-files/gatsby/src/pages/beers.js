@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 const BeerGridStyles = styled.div`
   display: grid;
@@ -28,6 +29,7 @@ export default function BeersPage({ data }) {
   const beers = data.beers.nodes;
   return (
     <>
+      <SEO title={`Beers! We have ${beers.length} in stock`} />
       <h2 className="center">
         WE HAVE {beers.length} BEERS AVAILABLE. DINE IN ONLY
       </h2>
@@ -51,3 +53,20 @@ export default function BeersPage({ data }) {
     </>
   );
 }
+
+export const query = graphql`
+  query {
+    beers: allBeer {
+      nodes {
+        id
+        name
+        price
+        image
+        rating {
+          average
+          reviews
+        }
+      }
+    }
+  }
+`;

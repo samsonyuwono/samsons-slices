@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Pagination from '../components/Pagination';
+import SEO from '../components/SEO';
 
 const SlicemasterGrid = styled.div`
   display: grid;
@@ -45,6 +46,7 @@ export default function SliceMastersPage({ data, pageContext }) {
   console.log(slicemasters);
   return (
     <>
+      <SEO title={`Slicemasters - Page ${pageContext.currentPage} || 1`} />
       <Pagination
         pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
         totalCount={data.slicemasters.totalCount}
@@ -56,7 +58,7 @@ export default function SliceMastersPage({ data, pageContext }) {
         <SlicemasterGrid>
           {slicemasters.map((person) => (
             <div>
-              <Link key={person.id} to={`/slicemasters/${person.slug.current}`}>
+              <Link key={person.id} to={`/slicemaster/${person.slug.current}`}>
                 <h2>
                   <span className="mark">{person.name}</span>
                 </h2>
