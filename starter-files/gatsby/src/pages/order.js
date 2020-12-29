@@ -8,14 +8,15 @@ import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import usePizza from '../utils/usePizza';
-import calculateOrderTotal from '../utils/calculateOrderTotal';
 import PizzaOrder from '../components/PizzaOrder';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 
 export default function OrderPage({ data }) {
   const pizzas = data.pizzas.nodes;
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    tabasco: '',
   });
   const {
     order,
@@ -29,6 +30,7 @@ export default function OrderPage({ data }) {
     pizzas,
     values,
   });
+
   if (message) {
     return <p>{message}</p>;
   }
@@ -36,7 +38,7 @@ export default function OrderPage({ data }) {
     <>
       <SEO title="Order a Pizza!" />
       <OrderStyles onSubmit={submitOrder}>
-        <fieldset>
+        <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor="name">Name</label>
           <input
@@ -54,8 +56,16 @@ export default function OrderPage({ data }) {
             value={values.email}
             onChange={updateValue}
           />
+          <input
+            type="tabasco"
+            name="tabasco"
+            id="tabasco"
+            value={values.tabasco}
+            onChange={updateValue}
+            className="tabasco"
+          />
         </fieldset>
-        <fieldset className="menu">
+        <fieldset disabled={loading} className="menu">
           <legend>Menu</legend>
           {pizzas.map((pizza) => (
             <MenuItemStyles key={pizza.id}>
@@ -87,7 +97,7 @@ export default function OrderPage({ data }) {
             </MenuItemStyles>
           ))}
         </fieldset>
-        <fieldset className="order">
+        <fieldset disabled={loading} className="order">
           <legend>Order</legend>
           <PizzaOrder
             order={order}
@@ -95,13 +105,13 @@ export default function OrderPage({ data }) {
             pizzas={pizzas}
           />
         </fieldset>
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>
-            Your total is {formatMoney(calculateOrderTotal(order, pizzas))}
+            Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
           <div>{error ? <p>Error: {error}</p> : ''}</div>
           <button type="submit" disabled={loading}>
-            {loading ? 'Placing order...' : 'Order ahead'}
+            {loading ? 'Placing Order...' : 'Order Ahead'}
           </button>
         </fieldset>
       </OrderStyles>
