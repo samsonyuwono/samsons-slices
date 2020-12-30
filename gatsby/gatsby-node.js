@@ -49,7 +49,6 @@ async function turnToppingsIntoPages({ graphql, actions }) {
 
   // 3. create for that topping
   data.toppings.nodes.forEach((topping) => {
-    console.log(`Creating page for topping`, topping.name);
     actions.createPage({
       path: `topping/${topping.name}`,
       component: toppingsTemplate,

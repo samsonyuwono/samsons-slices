@@ -5,8 +5,8 @@ export default function ItemGrid({ items }) {
   return (
     <ItemsGrid>
       {items.map((item) => (
-        <ItemStyles>
-          <p>
+        <ItemStyles key={item._id}>
+          <p key={item.id}>
             <span className="mark">{item.name}</span>
           </p>
           <img

@@ -14,6 +14,8 @@ const ToppingsStyles = styled.div`
     padding: 5px;
     background: var(--grey);
     border-radius: 2px;
+    text-decoration: none;
+    font-size: clamp(1.5rem, 1vw, 2.5rem);
     .count {
       background: #fff;
       padding: 2px 5px;
@@ -26,7 +28,6 @@ const ToppingsStyles = styled.div`
 
 function countPizzasInToppings(pizzas) {
   // return the pizzas in counts
-  console.log(pizzas);
   const counts = pizzas
     .map((pizza) => pizza.toppings)
     .flat()

@@ -5,7 +5,6 @@ import useLatestData from '../utils/useLatestData';
 import ItemGrid from '../components/ItemGrid';
 
 function CurrentlySlicing({ slicemasters }) {
-  console.log(slicemasters);
   return (
     <div>
       <h2 className="center">

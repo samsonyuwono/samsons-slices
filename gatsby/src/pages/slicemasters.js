@@ -54,21 +54,20 @@ export default function SliceMastersPage({ data, pageContext }) {
         skip={pageContext.skip}
         base="/slicemasters"
       />
-      <SlicemasterStyles>
-        <SlicemasterGrid>
-          {slicemasters.map((person) => (
-            <div>
-              <Link key={person.id} to={`/slicemaster/${person.slug.current}`}>
-                <h2>
-                  <span className="mark">{person.name}</span>
-                </h2>
-              </Link>
-              <Img fluid={person.image.asset.fluid} />
-              <p className="description">{person.description}</p>
-            </div>
-          ))}
-        </SlicemasterGrid>
-      </SlicemasterStyles>
+
+      <SlicemasterGrid>
+        {slicemasters.map((person) => (
+          <SlicemasterStyles key={person.id}>
+            <Link key={person.id} to={`/slicemaster/${person.slug.current}`}>
+              <h2>
+                <span className="mark">{person.name}</span>
+              </h2>
+            </Link>
+            <Img fluid={person.image.asset.fluid} />
+            <p className="description">{person.description}</p>
+          </SlicemasterStyles>
+        ))}
+      </SlicemasterGrid>
     </>
   );
 }
